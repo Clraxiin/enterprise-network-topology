@@ -1,1 +1,31 @@
+hostname R2
 
+interface Loopback10
+ ip address 20.0.0.0 255.255.255.255
+
+interface FastEthernet0/0
+ ip address 172.16.3.146 255.255.255.252
+
+interface FastEthernet0/1
+ ip address 172.16.3.154 255.255.255.252
+
+interface Serial0/3/0
+ ip address 195.136.17.13 255.255.255.252
+
+interface Serial0/3/1
+ ip address 195.136.17.9 255.255.255.252
+
+router ospf 1
+ router-id 2.2.2.2
+ network 195.136.17.8 0.0.0.3 area 1
+ network 195.136.17.12 0.0.0.3 area 1
+ network 172.16.1.0 0.0.0.255 area 1
+ network 172.16.2.0 0.0.0.255 area 1
+ network 172.16.3.0 0.0.0.255 area 1
+ network 172.16.3.144 0.0.0.3 area 1
+ network 172.16.3.152 0.0.0.3 area 1
+ network 20.0.0.0 0.0.0.0 area 1
+
+line vty 0 4
+ login local
+ transport input ssh
