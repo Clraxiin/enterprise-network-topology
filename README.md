@@ -164,10 +164,16 @@ Enterprise-Network-Project/
 │      Enterprise_Network.pkt
 │
 ├── Configurations/
-│      R1.txt
-│      R2.txt
-│      MLS1.txt
-│      MLS2.txt
+|      MLS1.text
+|      MLS2.txt
+|      R1.txt
+|      R2.txt
+|      SW1.txt
+|      SW2.txt
+|      SW3.txt
+|      SW4.txt
+|      SW5.txt
+|      SW6.txt
 │
 ├── Images/
 │      Network_Diagram.png
