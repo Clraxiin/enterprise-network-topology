@@ -44,7 +44,7 @@ The network follows Cisco's three-tier hierarchical architecture consisting of t
 - PAT (NAT Overload)
 - DHCP
 - DHCP Relay
-- SSH Version 2
+- SSH 
 - EtherChannel (Optional)
 - Layer 3 Switching
 
