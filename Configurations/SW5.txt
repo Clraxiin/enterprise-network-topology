@@ -1,1 +1,140 @@
+!
+! ==========================================
+! SW5 - ICT Department Access Switch
+! Cisco Catalyst 2960-24TT-L
+! ==========================================
+!
+hostname SW5
 
+!
+! Enable Secret
+!
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+
+!
+! User Configuration
+!
+username SW5 privilege 15 secret 5 $1$mERr$4dpRATIgxQacPVK0CfNV4/
+
+!
+! System Configuration
+!
+no ip domain-lookup
+ip domain-name netcam.local
+
+!
+! Spanning Tree
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+
+!
+! ==========================================
+! Trunk Ports
+! ==========================================
+!
+interface FastEthernet0/1
+ switchport mode trunk
+ no shutdown
+
+interface FastEthernet0/2
+ switchport mode trunk
+ no shutdown
+
+!
+! ==========================================
+! Access Ports (VLAN 50)
+! ==========================================
+!
+interface FastEthernet0/3
+ switchport mode access
+ switchport access vlan 50
+ spanning-tree portfast
+ no shutdown
+
+interface FastEthernet0/4
+ switchport mode access
+ switchport access vlan 50
+ spanning-tree portfast
+ no shutdown
+
+interface FastEthernet0/5
+ switchport mode access
+ switchport access vlan 50
+ spanning-tree portfast
+ no shutdown
+
+interface FastEthernet0/6
+ switchport mode access
+ switchport access vlan 50
+ spanning-tree portfast
+ no shutdown
+
+!
+! ==========================================
+! Unused Interfaces
+! ==========================================
+!
+interface range FastEthernet0/7 - 24
+ shutdown
+
+interface GigabitEthernet0/1
+ shutdown
+
+interface GigabitEthernet0/2
+ shutdown
+
+!
+! ==========================================
+! Management VLAN
+! ==========================================
+!
+interface Vlan1
+ no ip address
+ shutdown
+
+interface Vlan50
+ ip address 172.16.3.2 255.255.255.128
+ no shutdown
+
+!
+! Default Gateway
+!
+ip default-gateway 172.16.3.1
+
+!
+! ==========================================
+! Banner
+! ==========================================
+!
+banner motd ^
+****************************************************
+*        Welcome to ICT Department                 *
+* Unauthorized Access Is Strictly Prohibited       *
+****************************************************
+^
+
+!
+! ==========================================
+! Console Access
+! ==========================================
+!
+line con 0
+ password cisco
+ login
+ logging synchronous
+
+!
+! SSH Remote Access
+! ==========================================
+!
+line vty 0 4
+ login local
+ transport input ssh
+
+line vty 5 15
+ login local
+ transport input ssh
+
+!
+end
